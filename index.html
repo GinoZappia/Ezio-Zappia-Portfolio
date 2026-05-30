@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio | Forest & River</title>
+    <style>
+        :root {
+            --forest-black: #050a08;
+            --river-deep: #0f1c1e;
+            --moss-green: #2d4c3b;
+            --mist-teal: #648a81;
+            --water-highlight: #a3c1ad;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--forest-black);
+            color: #e0e7e5;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- ADVANCED ANIMATED BACKGROUND --- */
+        .river-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, var(--forest-black) 0%, var(--river-deep) 100%);
+            overflow: hidden;
+        }
+
+        /* Animated Mist Layer */
+        .mist {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(100, 138, 129, 0.05) 0%, transparent 70%);
+            filter: blur(60px);
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(-20%) translateY(-5%); }
+            to { transform: translateX(0%) translateY(5%); }
+        }
+
+        /* --- LAYOUT --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(5, 10, 8, 0.4);
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 100;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            color: var(--water-highlight);
+            text-shadow: 0 0 30px rgba(163, 193, 173, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.8rem;
+            text-transform: uppercase;
+            color: var(--mist-teal);
+        }
+
+        /* --- GALLERY GRID --- */
+        .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .artwork-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(100, 138, 129, 0.1);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        /* The "Advanced" Hover Effect */
+        .artwork-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--mist-teal);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .artwork-card img, .artwork-card video {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(30%) contrast(1.1);
+            transition: transform 0.8s ease;
+        }
+
+        .artwork-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .card-info {
+            padding: 20px;
+            background: linear-gradient(to top, var(--river-deep), transparent);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .artwork-card:hover .card-info {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            color: var(--water-highlight);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.3rem;
+            color: var(--moss-green);
+            text-transform: uppercase;
+        }
+
+        /* Smooth Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="river-container">
+        <div class="mist"></div>
+    </div>
+
+    <header>
+        <h1 class="hero-title">Portfolio</h1>
+        <p class="hero-subtitle">Visual Works</p>
+    </header>
+
+    <main class="gallery">
+        <!-- IMAGE ITEM -->
+        <div class="artwork-card">
+            <!-- Replace with actual image path -->
+            <img src="https://via.placeholder.com/800x1200/0f1c1e/648a81?text=Artwork+One" alt="Forest Study">
+            <div class="card-info">
+                <h3 class="card-title">Forest Study</h3>
+            </div>
+        </div>
+
+        <!-- VIDEO ITEM (Fastest way to implement video) -->
+        <div class="artwork-card">
+            <!-- Replace with actual video path -->
+            <video autoplay loop muted playsinline>
+                <source src="your-video.mp4" type="video/mp4">
+            </video>
+            <div class="card-info">
+                <h3 class="card-title">Motion Piece</h3>
+            </div>
+        </div>
+
+        <!-- REPEAT FOR MORE ASSETS -->
+        <div class="artwork-card">
+            <img src="https://via.placeholder.com/800x1200/0f1c1e/648a81?text=Artwork+Two" alt="River Flow">
+            <div class="card-info">
+                <h3 class="card-title">River Flow</h3>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Crafted for the Next Generation
+    </footer>
+
+</body>
+</html>
